@@ -1,0 +1,39 @@
+{
+	"name": "serenity/generators",
+	"description": "Generators package for SerenityPHP application framework.",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Vince Kronlein",
+			"email": "vkronlein@icloud.com"
+		}
+	],
+	"require": {
+		"php": "^7.4|^8.0",
+		"illuminate/console": "^8.35",
+		"illuminate/database": "^8.35",
+		"illuminate/support": "^8.35"
+	},
+	"config": {
+		"preferred-install": "dist",
+		"sort-packages": true
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Serenity\\Generators\\Providers\\ConsoleSupportServiceProvider"
+			]
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Serenity\\Generators\\": "src/"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^3.2"
+	}
+}

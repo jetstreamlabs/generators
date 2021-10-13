@@ -1,0 +1,28 @@
+<?php
+
+namespace {{ factoryNamespace }};
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use {{ namespacedEntity }};
+
+class {{ factory }}Factory extends Factory
+{
+	/**
+	 * The name of the factory's corresponding entity.
+	 *
+	 * @var string
+	 */
+	protected $model = {{ entity }}::class;
+
+	/**
+	 * Define the entity's default state.
+	 *
+	 * @return array
+	 */
+	public function definition()
+	{
+		return [
+			//
+		];
+	}
+}

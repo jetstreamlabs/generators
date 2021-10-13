@@ -1,0 +1,39 @@
+<?php
+
+namespace DummyNamespace;
+
+class DummyClass
+{
+	/**
+	 * Handle to the DocDummyEntity "created" event.
+	 *
+	 * @param  \NamespacedDummyEntity  $dummyModel
+	 * @return void
+	 */
+	public function created(DummyEntity $dummyEntity)
+	{
+		//
+	}
+
+	/**
+	 * Handle the DocDummyEntity "updated" event.
+	 *
+	 * @param  \NamespacedDummyEntity  $dummyEntity
+	 * @return void
+	 */
+	public function updated(DummyEntity $dummyEntity)
+	{
+		//
+	}
+
+	/**
+	 * Handle the DocDummyEntity "deleted" event.
+	 *
+	 * @param  \NamespacedDummyEntity  $dummyEntity
+	 * @return void
+	 */
+	public function deleted(DummyEntity $dummyEntity)
+	{
+		//
+	}
+}

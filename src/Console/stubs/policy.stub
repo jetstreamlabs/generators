@@ -1,0 +1,57 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class DummyClass
+{
+	use HandlesAuthorization;
+
+	/**
+	 * Determine whether the user can view the DocDummyEntity.
+	 *
+	 * @param  \NamespacedDummyUserEntity  $user
+	 * @param  \NamespacedDummyEntity  $dummyEntity
+	 * @return mixed
+	 */
+	public function view(DummyUser $user, DummyEntity $dummyEntity)
+	{
+		//
+	}
+
+	/**
+	 * Determine whether the user can create DocDummyPluralEntity.
+	 *
+	 * @param  \NamespacedDummyUserEntity  $user
+	 * @return mixed
+	 */
+	public function create(DummyUser $user)
+	{
+		//
+	}
+
+	/**
+	 * Determine whether the user can update the DocDummyEntity.
+	 *
+	 * @param  \NamespacedDummyUserEntity  $user
+	 * @param  \NamespacedDummyEntity  $dummyEntity
+	 * @return mixed
+	 */
+	public function update(DummyUser $user, DummyEntity $dummyEntity)
+	{
+		//
+	}
+
+	/**
+	 * Determine whether the user can delete the DocDummyEntity.
+	 *
+	 * @param  \NamespacedDummyUserEntity  $user
+	 * @param  \NamespacedDummyEntity  $dummyEntity
+	 * @return mixed
+	 */
+	public function delete(DummyUser $user, DummyEntity $dummyEntity)
+	{
+		//
+	}
+}
