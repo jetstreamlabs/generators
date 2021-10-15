@@ -95,8 +95,8 @@ class ActionMakeCommand extends GeneratorCommand
 	{
 		return [
 			['sc', null, InputOption::VALUE_NONE, 'Use the scaffold stubs.'],
-	  ['type', null, InputOption::VALUE_NONE, 'Stub type for a given action.'],
-	  ['service', null, InputOption::VALUE_NONE, 'The name of the service for replacements.']
+			['type', null, InputOption::VALUE_NONE, 'Stub type for a given action.'],
+			['service', null, InputOption::VALUE_NONE, 'The name of the service for replacements.']
 		];
 	}
 }

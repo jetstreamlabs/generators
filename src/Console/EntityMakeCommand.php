@@ -44,9 +44,13 @@ class EntityMakeCommand extends GeneratorCommand
 		}
 
 		if ($this->option('resource')) {
+			$this->input->setOption('repo', true);
 			$this->input->setOption('factory', true);
 			$this->input->setOption('migration', true);
-			$this->input->setOption('action', true);
+		}
+
+		if ($this->option('repo')) {
+			$this->createRepository();
 		}
 
 		if ($this->option('factory')) {
@@ -56,25 +60,32 @@ class EntityMakeCommand extends GeneratorCommand
 		if ($this->option('migration')) {
 			$this->createMigration();
 		}
+	}
 
-		if ($this->option('action')) {
-			$this->createAction();
-		}
+	protected function createRepository()
+	{
+		$name = Str::studly(class_basename($this->argument('name')));
+		$repo = Str::singular($name);
+
+		$this->call('make:repository', [
+			'name' => "{$repo}Repository",
+			'--entity' => $repo
+		]);
 	}
 
 	/**
-	 * Create a model factory for the model.
+	 * Create a factory for the entity.
 	 *
 	 * @return void
 	 */
-	protected function createFactory()
+	protected function createFactory(): void
 	{
 		$factory = Str::studly(class_basename($this->argument('name')));
 
 		$this->call('make:factory', [
-			'name' => "{$factory}Factory",
-			'--entity' => $this->argument('name'),
-		]);
+	  'name' => "{$factory}Factory",
+	  '--entity' => $this->argument('name'),
+	]);
 	}
 
 	/**
@@ -87,26 +98,9 @@ class EntityMakeCommand extends GeneratorCommand
 		$table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
 		$this->call('make:migration', [
-			'name' => "create_{$table}_table",
-			'--create' => $table,
-		]);
-	}
-
-	/**
-	 * Create an action for the model.
-	 *
-	 * @return void
-	 */
-	protected function createAction()
-	{
-		$action = Str::studly(class_basename($this->argument('name')));
-
-		$entityName = $this->qualifyClass($this->getNameInput());
-
-		$this->call('make:action', [
-			'name' => "{$action}Action",
-			'--entity' => $this->option('resource') ? $entityName : null,
-		]);
+	  'name' => "create_{$table}_table",
+	  '--create' => $table,
+	]);
 	}
 
 	/**
@@ -142,17 +136,12 @@ class EntityMakeCommand extends GeneratorCommand
 	protected function getOptions()
 	{
 		return [
-			['action', 'a', InputOption::VALUE_NONE, 'Create a new action for the entity.'],
-
-			['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the entity.'],
-
-			['force', null, InputOption::VALUE_NONE, 'Create the class even if the entity already exists.'],
-
-			['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the entity.'],
-
-			['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated entity should be a custom intermediate table entity.'],
-
-			['resource', 'r', InputOption::VALUE_NONE, 'Generate a migration, factory, and action for the entity.'],
-		];
+		['repo', 's', InputOption::VALUE_NONE, 'Create a new repository for the entity.'],
+	  ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the entity.'],
+	  ['force', null, InputOption::VALUE_NONE, 'Create the class even if the entity already exists.'],
+	  ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the entity.'],
+	  ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated entity should be a custom intermediate table entity.'],
+	  ['resource', 'r', InputOption::VALUE_NONE, 'Generate a repository, migration and factory for the entity.'],
+	];
 	}
 }

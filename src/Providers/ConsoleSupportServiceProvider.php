@@ -3,7 +3,6 @@
 namespace Serenity\Generators\Providers;
 
 use Illuminate\Support\AggregateServiceProvider;
-use Illuminate\Database\MigrationServiceProvider;
 use Illuminate\Foundation\Providers\ArtisanServiceProvider;
 use Illuminate\Foundation\Providers\ComposerServiceProvider;
 

@@ -4,6 +4,7 @@ namespace Serenity\Generators\Console;
 
 use Illuminate\Support\Str;
 use Serenity\Generators\GeneratorCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryMakeCommand extends GeneratorCommand
 {
@@ -35,7 +36,7 @@ class RepositoryMakeCommand extends GeneratorCommand
 	 */
 	protected function getStub()
 	{
-		//
+		// none required, this only calls other generators.
 	}
 
 	/**
@@ -46,7 +47,6 @@ class RepositoryMakeCommand extends GeneratorCommand
 	public function handle()
 	{
 		$this->createInterface();
-
 		$this->createRepository();
 	}
 
@@ -57,10 +57,10 @@ class RepositoryMakeCommand extends GeneratorCommand
 	 */
 	protected function createInterface()
 	{
-		$interface = Str::studly(class_basename($this->argument('name')) . 'Interface');
+		$interface = Str::studly(class_basename($this->argument('name')));
 
 		$this->call('make:repository-contract', [
-			'name' => "{$interface}"
+			'name' => "{$interface}Interface"
 		]);
 	}
 
@@ -74,7 +74,20 @@ class RepositoryMakeCommand extends GeneratorCommand
 		$repository = Str::studly(class_basename($this->argument('name')));
 
 		$this->call('make:eloquent-repository', [
-			'name' => "{$repository}"
+			'name' => "{$repository}",
+	  '--entity' => $this->option('entity') ?? null,
 		]);
+	}
+
+	/**
+	 * Get the console command options.
+	 *
+	 * @return array
+	 */
+	protected function getOptions()
+	{
+		return [
+	  ['entity', 'e', InputOption::VALUE_NONE, 'Set the entity name for the repository.']
+		];
 	}
 }

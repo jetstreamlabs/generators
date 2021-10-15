@@ -3,12 +3,16 @@
 namespace DummyNamespace;
 
 use Serenity\Lotus\Core\Entity;
+use Database\Factories\DummyClassFactory;
 use Serenity\Lotus\Concerns\SelfResolves;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DummyClass extends Entity
 {
-	use SelfResolves, SoftDeletes;
+	use HasFactory;
+  use SelfResolves;
+  use SoftDeletes;
 
 	/**
 	 * The attributes that should be mutated to dates.
@@ -30,9 +34,19 @@ class DummyClass extends Entity
 	 * @var array
 	 */
 	protected $casts = [
-		'id'		 => 'string',
+		'id' => 'string',
 		'created_at' => 'datetime:Y-m-d H:i:s',
 		'updated_at' => 'datetime:Y-m-d H:i:s',
 		'deleted_at' => 'datetime:Y-m-d H:i:s',
 	];
+
+  /**
+	 * Create a new factory instance for the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Factories\Factory
+	 */
+	protected static function newFactory()
+	{
+		return DummyClassFactory::new();
+	}
 }

@@ -1,0 +1,99 @@
+<?php
+
+namespace DummyNamespace;
+
+use Serenity\Lotus\Core\Service;
+use Serenity\Lotus\Contracts\PayloadInterface;
+use App\Domain\Repositories\Contracts\DummyRepoRepositoryInterface;
+
+class DummyClass extends Service
+{
+	/**
+	 * Repository interface.
+	 *
+	 * @var \Serenity\Lotus\Contracts\RepositoryInterface
+	 */
+	public ${{ repovar }};
+
+	/**
+	 * Create a new instance of the class.
+	 *
+	 * @param \App\Domain\Repositories\Contracts\DummyRepoRepositoryInterface ${{ repovar }}
+	 */
+	public function __construct(DummyRepoRepositoryInterface ${{ repovar }})
+	{
+		$this->{{ repovar }} = ${{ repovar }};
+	}
+
+	/**
+	 * Service method for index action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function handle(): PayloadInterface
+	{
+		// build up all your data here.
+
+		return $this->successResponse([]);
+	}
+
+	/**
+	 * Service method for create action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function create(): PayloadInterface
+	{
+		return $this->successResponse([]);
+	}
+
+	/**
+	 * Service method for edit action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function edit(): PayloadInterface
+	{
+		return $this->successResponse([]);
+	}
+
+	/**
+	 * Service method for store action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function store(): PayloadInterface
+	{
+		return $this->successResponse([]);
+	}
+
+	/**
+	 * Service method for update action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function update(): PayloadInterface
+	{
+		return $this->successResponse([]);
+	}
+
+	/**
+	 * Service method for delete action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function delete(): PayloadInterface
+	{
+		return $this->successResponse([]);
+	}
+
+	/**
+	 * Service method for restore action.
+	 *
+	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 */
+	public function restore(): PayloadInterface
+	{
+		return $this->successResponse([]);
+	}
+}

@@ -18,11 +18,7 @@ class DummyClass extends Action
 	 */
 	public function __construct(VueResponderInterface $responder, DummyServiceService $service)
 	{
-		$this->resolve($responder)
-			->with('App/Component', true)
-			->serve($service);
-
-		bcs([]);
+		$this->resolve($responder)->serve($service);
 	}
 
 	/**

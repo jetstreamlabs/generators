@@ -3,6 +3,7 @@
 namespace DummyNamespace;
 
 use Serenity\Lotus\Core\Repository;
+use DummyRootNamespaceDomain\Entities\DummyEntity;
 use DummyRootNamespaceDomain\Repositories\Contracts\DummyClassInterface;
 
 class DummyClass extends Repository implements DummyClassInterface
@@ -14,6 +15,6 @@ class DummyClass extends Repository implements DummyClassInterface
 	 */
 	public function entity()
 	{
-		//
+		return DummyEntity::class;
 	}
 }
