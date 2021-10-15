@@ -1,0 +1,40 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use Serenity\Lotus\Core\Action;
+use App\Domain\Services\DummyServiceService;
+use Illuminate\Contracts\Support\Responsable;
+use App\Domain\Contracts\VueResponderInterface;
+
+class DummyClass extends Action
+{
+	/**
+	 * Create a new action instance.
+	 *
+	 * @param \App\Domain\Contracts\VueResponderInterface $responder
+   * @param \App\Domain\Services\DummyServiceService $service
+	 */
+	public function __construct(VueResponderInterface $responder, DummyServiceService $service)
+	{
+		$this->resolve($responder)
+			->with('App/Component', true)
+			->serve($service);
+
+		bcs([]);
+	}
+
+	/**
+	 * Invoke our action, handle domain, respond.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @return \Illuminate\Contracts\Support\Responsable
+	 */
+	public function __invoke(Request $request): Responsable
+	{
+		return $this->responder->make(
+			$this->service->handle()
+		)->send();
+	}
+}

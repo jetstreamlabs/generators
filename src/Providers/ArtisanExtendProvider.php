@@ -8,6 +8,7 @@ use Serenity\Generators\Console\JobMakeCommand;
 use Illuminate\Contracts\Foundation\Application;
 use Serenity\Generators\Console\CastMakeCommand;
 use Serenity\Generators\Console\MailMakeCommand;
+use Serenity\Generators\Console\PageMakeCommand;
 use Serenity\Generators\Console\RuleMakeCommand;
 use Serenity\Generators\Console\EventMakeCommand;
 use Serenity\Generators\Console\ActionMakeCommand;
@@ -28,6 +29,7 @@ use Serenity\Generators\Console\ListenerMakeCommand;
 use Serenity\Generators\Console\ObserverMakeCommand;
 use Serenity\Generators\Console\ProviderMakeCommand;
 use Serenity\Generators\Console\ResourceMakeCommand;
+use Serenity\Generators\Console\ScaffoldMakeCommand;
 use Serenity\Generators\Console\ComponentMakeCommand;
 use Serenity\Generators\Console\EventGenerateCommand;
 use Serenity\Generators\Console\ExceptionMakeCommand;
@@ -74,6 +76,7 @@ class ArtisanExtendProvider extends ServiceProvider
 		'MiddlewareMake' => 'command.middleware.make',
 		'NotificationMake' => 'command.notification.make',
 		'ObserverMake' => 'command.observer.make',
+	'PageMake' => 'command.page.make',
 		'PayloadMake' => 'command.payload.make',
 		'PolicyMake' => 'command.policy.make',
 		'ProviderMake' => 'command.provider.make',
@@ -83,6 +86,7 @@ class ArtisanExtendProvider extends ServiceProvider
 		'ResourceMake' => 'command.resource.make',
 		'ResponderMake' => 'command.responder.make',
 		'RuleMake' => 'command.rule.make',
+	'ScaffoldMake' => 'command.scaffold.make',
 		'SeederMake' => 'command.seeder.make',
 		'ServiceMake' => 'command.service.make',
 		'StubPublish' => 'command.stub.publish',
@@ -370,6 +374,18 @@ class ArtisanExtendProvider extends ServiceProvider
 	 *
 	 * @return void
 	 */
+	protected function registerPageMakeCommand()
+	{
+		$this->app->singleton('command.page.make', function (Application $app) {
+			return new PageMakeCommand($app['files']);
+		});
+	}
+
+	/**
+	 * Register the command.
+	 *
+	 * @return void
+	 */
 	protected function registerPayloadMakeCommand()
 	{
 		$this->app->singleton('command.payload.make', function (Application $app) {
@@ -470,6 +486,18 @@ class ArtisanExtendProvider extends ServiceProvider
 	{
 		$this->app->singleton('command.rule.make', function (Application $app) {
 			return new RuleMakeCommand($app['files']);
+		});
+	}
+
+	/**
+	 * Register the command.
+	 *
+	 * @return void
+	 */
+	protected function registerScaffoldMakeCommand()
+	{
+		$this->app->singleton('command.scaffold.make', function ($app) {
+			return new ScaffoldMakeCommand($app['files']);
 		});
 	}
 
