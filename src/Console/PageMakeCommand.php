@@ -1,10 +1,10 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class PageMakeCommand extends GeneratorCommand
 {
@@ -40,18 +40,18 @@ class PageMakeCommand extends GeneratorCommand
 	{
 		$name = $this->getNameInput();
 
-		$path = app_path('Responders/') . $name . '.vue';
+		$path = app_path('Responders/').$name.'.vue';
 
 		if ($this->option('sc')) {
-			$path = app_path('Responders/App/') . $name . '.vue';
+			$path = app_path('Responders/App/').$name.'.vue';
 		}
-		
+
 		$renamed = str_replace(['\\', '/'], ['.', '.'], $name);
 
-		$class = 'Responders.' . $renamed;
+		$class = 'Responders.'.$renamed;
 
 		if ($this->option('sc')) {
-			$class = 'Responders.App.' . $renamed;
+			$class = 'Responders.App.'.$renamed;
 		}
 
 		$stub = $this->files->get($this->getStub());
@@ -61,7 +61,7 @@ class PageMakeCommand extends GeneratorCommand
 
 		$this->files->put($path, $file);
 
-		$this->info($this->type . ' created successfully.');
+		$this->info($this->type.' created successfully.');
 	}
 
 	/**
@@ -82,7 +82,7 @@ class PageMakeCommand extends GeneratorCommand
 	protected function getOptions()
 	{
 		return [
-			['sc', null, InputOption::VALUE_NONE, 'Use the scaffold stubs.']
+			['sc', null, InputOption::VALUE_NONE, 'Use the scaffold stubs.'],
 		];
 	}
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class ActionMakeCommand extends GeneratorCommand
 {
@@ -40,12 +40,12 @@ class ActionMakeCommand extends GeneratorCommand
 	protected function getStub()
 	{
 		$stub = '/stubs/action.stub';
-	
+
 		if ($this->option('sc')) {
 			$type = $this->option('type');
 			$stub = "/scaffold/action.{$type}.stub";
 		}
-	
+
 		return $this->resolveStubPath($stub);
 	}
 
@@ -83,7 +83,7 @@ class ActionMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Actions';
+		return $rootNamespace.'\Actions';
 	}
 
 	/**
@@ -96,7 +96,7 @@ class ActionMakeCommand extends GeneratorCommand
 		return [
 			['sc', null, InputOption::VALUE_NONE, 'Use the scaffold stubs.'],
 			['type', null, InputOption::VALUE_NONE, 'Stub type for a given action.'],
-			['service', null, InputOption::VALUE_NONE, 'The name of the service for replacements.']
+			['service', null, InputOption::VALUE_NONE, 'The name of the service for replacements.'],
 		];
 	}
 }

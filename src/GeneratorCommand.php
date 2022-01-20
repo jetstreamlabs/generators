@@ -1,10 +1,10 @@
 <?php
 
-namespace Serenity\Generators;
+namespace Jetlabs\Generators;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 
 abstract class GeneratorCommand extends Command
@@ -24,11 +24,11 @@ abstract class GeneratorCommand extends Command
 	protected $type;
 
 	/**
-	 * Alias the Laravel instance to Serenity.
+	 * Alias the Laravel instance to Jetlabs.
 	 *
 	 * @var object
 	 */
-	protected $serenity;
+	protected $Jetlabs;
 
 	/**
 	 * Reserved names that cannot be used for generation.
@@ -118,7 +118,7 @@ abstract class GeneratorCommand extends Command
 
 		$this->files = $files;
 
-		$this->serenity = $this->getLaravel();
+		$this->Jetlabs = $this->getLaravel();
 	}
 
 	/**
@@ -137,15 +137,15 @@ abstract class GeneratorCommand extends Command
 	 */
 	public function handle()
 	{
-		if (is_null($this->serenity)) {
-			$this->serenity = $this->getLaravel();
+		if (is_null($this->Jetlabs)) {
+			$this->Jetlabs = $this->getLaravel();
 		}
 
 		// First we need to ensure that the given name is not a reserved word within the PHP
 		// language and that the class name will actually be valid. If it is not valid we
 		// can error now and prevent from polluting the filesystem using invalid files.
 		if ($this->isReservedName($this->getNameInput())) {
-			$this->error('The name "' . $this->getNameInput() . '" is reserved by PHP.');
+			$this->error('The name "'.$this->getNameInput().'" is reserved by PHP.');
 
 			return false;
 		}
@@ -157,11 +157,11 @@ abstract class GeneratorCommand extends Command
 		// Next, We will check to see if the class already exists. If it does, we don't want
 		// to create the class and overwrite the user's code. So, we will bail out so the
 		// code is untouched. Otherwise, we will continue generating this class' files.
-		if ((!$this->hasOption('force') ||
-				!$this->option('force')) &&
+		if ((! $this->hasOption('force') ||
+				! $this->option('force')) &&
 			$this->alreadyExists($this->getNameInput())
 		) {
-			$this->error($this->type . ' already exists!');
+			$this->error($this->type.' already exists!');
 
 			return false;
 		}
@@ -173,7 +173,7 @@ abstract class GeneratorCommand extends Command
 
 		$this->files->put($path, $this->sortImports($this->buildClass($name)));
 
-		$this->info($this->type . ' created successfully.');
+		$this->info($this->type.' created successfully.');
 	}
 
 	/**
@@ -195,7 +195,7 @@ abstract class GeneratorCommand extends Command
 		}
 
 		return $this->qualifyClass(
-			$this->getDefaultNamespace(trim($rootNamespace, '\\')) . '\\' . $name
+			$this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
 		);
 	}
 
@@ -217,7 +217,7 @@ abstract class GeneratorCommand extends Command
 			return $entity;
 		}
 
-		return $rootNamespace . 'Domain\\Entities\\' . $entity;
+		return $rootNamespace.'Domain\\Entities\\'.$entity;
 	}
 
 	/**
@@ -252,7 +252,7 @@ abstract class GeneratorCommand extends Command
 	{
 		$name = Str::replaceFirst($this->rootNamespace(), '', $name);
 
-		return $this->serenity['path'] . '/' . str_replace('\\', '/', $name) . '.php';
+		return $this->Jetlabs['path'].'/'.str_replace('\\', '/', $name).'.php';
 	}
 
 	/**
@@ -263,7 +263,7 @@ abstract class GeneratorCommand extends Command
 	 */
 	protected function makeDirectory($path)
 	{
-		if (!$this->files->isDirectory(dirname($path))) {
+		if (! $this->files->isDirectory(dirname($path))) {
 			$this->files->makeDirectory(dirname($path), 0777, true, true);
 		}
 
@@ -331,7 +331,7 @@ abstract class GeneratorCommand extends Command
 	 */
 	protected function replaceClass($stub, $name)
 	{
-		$class = str_replace($this->getNamespace($name) . '\\', '', $name);
+		$class = str_replace($this->getNamespace($name).'\\', '', $name);
 
 		return str_replace(['DummyClass', '{{ class }}', '{{class}}'], $class, $stub);
 	}
@@ -372,7 +372,7 @@ abstract class GeneratorCommand extends Command
 	 */
 	protected function rootNamespace()
 	{
-		return $this->serenity->getNamespace();
+		return $this->Jetlabs->getNamespace();
 	}
 
 	/**
@@ -382,9 +382,9 @@ abstract class GeneratorCommand extends Command
 	 */
 	protected function userProviderEntity()
 	{
-		$config = $this->serenity['config'];
+		$config = $this->Jetlabs['config'];
 
-		$provider = $config->get('auth.guards.' . $config->get('auth.defaults.guard') . '.provider');
+		$provider = $config->get('auth.guards.'.$config->get('auth.defaults.guard').'.provider');
 
 		return $config->get("auth.providers.{$provider}.entity");
 	}
@@ -410,9 +410,9 @@ abstract class GeneratorCommand extends Command
 	 */
 	protected function viewPath($path = '')
 	{
-		$views = $this->serenity['config']['view.paths'][0] ?? resource_path('views');
+		$views = $this->Jetlabs['config']['view.paths'][0] ?? resource_path('views');
 
-		return $views . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+		return $views.($path ? DIRECTORY_SEPARATOR.$path : $path);
 	}
 
 	/**

@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class EloquentRepositoryMakeCommand extends GeneratorCommand
 {
@@ -54,7 +54,7 @@ class EloquentRepositoryMakeCommand extends GeneratorCommand
 	/**
 	 * Replace the entity name in the repository.
 	 *
-	 * @param  string $stub
+	 * @param  string  $stub
 	 * @return string
 	 */
 	protected function replaceEntityName($stub)
@@ -82,7 +82,7 @@ class EloquentRepositoryMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Repositories\Eloquent';
+		return $rootNamespace.'\Domain\Repositories\Eloquent';
 	}
 
 	/**
@@ -93,7 +93,7 @@ class EloquentRepositoryMakeCommand extends GeneratorCommand
 	protected function getOptions()
 	{
 		return [
-	  ['entity', 'e', InputOption::VALUE_NONE, 'Set the entity name for the repository.']
+			['entity', 'e', InputOption::VALUE_NONE, 'Set the entity name for the repository.'],
 		];
 	}
 }

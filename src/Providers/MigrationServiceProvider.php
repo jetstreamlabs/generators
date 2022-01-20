@@ -1,21 +1,21 @@
 <?php
 
-namespace Serenity\Generators\Providers;
+namespace Jetlabs\Generators\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Contracts\Support\DeferrableProvider;
-use Serenity\Generators\Migrations\MigrationCreator;
-use Serenity\Generators\Migrations\MigrateMakeCommand;
 use Illuminate\Database\Console\Migrations\FreshCommand;
-use Illuminate\Database\Console\Migrations\ResetCommand;
-use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Database\Console\Migrations\InstallCommand;
 use Illuminate\Database\Console\Migrations\MigrateCommand;
 use Illuminate\Database\Console\Migrations\RefreshCommand;
+use Illuminate\Database\Console\Migrations\ResetCommand;
 use Illuminate\Database\Console\Migrations\RollbackCommand;
+use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
+use Illuminate\Database\Migrations\Migrator;
+use Illuminate\Support\ServiceProvider;
+use Jetlabs\Generators\Migrations\MigrateMakeCommand;
+use Jetlabs\Generators\Migrations\MigrationCreator;
 
 class MigrationServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -25,15 +25,15 @@ class MigrationServiceProvider extends ServiceProvider implements DeferrableProv
 	 * @var array
 	 */
 	protected $commands = [
-	'Migrate' => 'command.migrate',
-	'MigrateFresh' => 'command.migrate.fresh',
-	'MigrateInstall' => 'command.migrate.install',
-	'MigrateRefresh' => 'command.migrate.refresh',
-	'MigrateReset' => 'command.migrate.reset',
-	'MigrateRollback' => 'command.migrate.rollback',
-	'MigrateStatus' => 'command.migrate.status',
-	'MigrateMake' => 'command.migrate.make',
-  ];
+		'Migrate' => 'command.migrate',
+		'MigrateFresh' => 'command.migrate.fresh',
+		'MigrateInstall' => 'command.migrate.install',
+		'MigrateRefresh' => 'command.migrate.refresh',
+		'MigrateReset' => 'command.migrate.reset',
+		'MigrateRollback' => 'command.migrate.rollback',
+		'MigrateStatus' => 'command.migrate.status',
+		'MigrateMake' => 'command.migrate.make',
+	];
 
 	/**
 	 * Register the service provider.
@@ -222,7 +222,7 @@ class MigrationServiceProvider extends ServiceProvider implements DeferrableProv
 	public function provides()
 	{
 		return array_merge([
-	  'migrator', 'migration.repository', 'migration.creator',
-	], array_values($this->commands));
+			'migrator', 'migration.repository', 'migration.creator',
+		], array_values($this->commands));
 	}
 }

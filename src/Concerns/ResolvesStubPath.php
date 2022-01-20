@@ -1,6 +1,6 @@
 <?php
 
-namespace Serenity\Generators\Concerns;
+namespace Jetlabs\Generators\Concerns;
 
 trait ResolvesStubPath
 {
@@ -14,6 +14,6 @@ trait ResolvesStubPath
 	{
 		return file_exists($customPath = $this->laravel->basePath(trim($stub, '/')))
 			? $customPath
-			: realpath(__DIR__ . '/../Console' . $stub);
+			: realpath(__DIR__.'/../Console'.$stub);
 	}
 }

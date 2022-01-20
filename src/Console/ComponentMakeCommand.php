@@ -1,9 +1,9 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
-use Serenity\Generators\GeneratorCommand;
-use Serenity\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 
 class ComponentMakeCommand extends GeneratorCommand
 {
@@ -38,7 +38,7 @@ class ComponentMakeCommand extends GeneratorCommand
 	public function handle()
 	{
 		$name = $this->getNameInput();
-		$path = resource_path('js/components/') . $name . '.vue';
+		$path = resource_path('js/components/').$name.'.vue';
 
 		$class = str_replace(['\\', '/'], ['.', '.'], $name);
 
@@ -49,7 +49,7 @@ class ComponentMakeCommand extends GeneratorCommand
 
 		$this->files->put($path, $file);
 
-		$this->info($this->type . ' created successfully.');
+		$this->info($this->type.' created successfully.');
 	}
 
 	/**

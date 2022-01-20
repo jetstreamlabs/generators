@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class ServiceMakeCommand extends GeneratorCommand
 {
@@ -54,7 +54,7 @@ class ServiceMakeCommand extends GeneratorCommand
 	/**
 	 * Do replacements for the repo name.
 	 *
-	 * @param  string $stub
+	 * @param  string  $stub
 	 * @return string
 	 */
 	protected function replaceRepoName($stub)
@@ -89,7 +89,7 @@ class ServiceMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Services';
+		return $rootNamespace.'\Domain\Services';
 	}
 
 	/**
@@ -101,7 +101,7 @@ class ServiceMakeCommand extends GeneratorCommand
 	{
 		return [
 			['sc', null, InputOption::VALUE_NONE, 'Use the scaffold stubs.'],
-			['repo', null, InputOption::VALUE_NONE, 'The name of the repo for replacements.']
+			['repo', null, InputOption::VALUE_NONE, 'The name of the repo for replacements.'],
 		];
 	}
 }

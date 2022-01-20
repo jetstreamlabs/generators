@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class ListenerMakeCommand extends GeneratorCommand
 {
@@ -42,12 +42,12 @@ class ListenerMakeCommand extends GeneratorCommand
 	{
 		$event = $this->option('event');
 
-		if (!Str::startsWith($event, [
-			$this->serenity->getNamespace(),
+		if (! Str::startsWith($event, [
+			$this->Jetlabs->getNamespace(),
 			'Illuminate',
 			'\\',
 		])) {
-			$event = $this->serenity->getNamespace() . 'Domain\\Events\\' . $event;
+			$event = $this->Jetlabs->getNamespace().'Domain\\Events\\'.$event;
 		}
 
 		$stub = str_replace(
@@ -100,7 +100,7 @@ class ListenerMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Listeners';
+		return $rootNamespace.'\Domain\Listeners';
 	}
 
 	/**

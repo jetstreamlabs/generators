@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Serenity\Lotus\Contracts\CriterionInterface;
+use Jetlabs\Lotus\Contracts\CriterionInterface;
 
 class DummyClass implements CriterionInterface
 {

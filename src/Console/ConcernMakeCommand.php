@@ -1,9 +1,9 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
-use Serenity\Generators\GeneratorCommand;
-use Serenity\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 
 class ConcernMakeCommand extends GeneratorCommand
 {
@@ -58,6 +58,6 @@ class ConcernMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Concerns';
+		return $rootNamespace.'\Domain\Concerns';
 	}
 }

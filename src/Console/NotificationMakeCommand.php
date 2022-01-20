@@ -1,10 +1,10 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class NotificationMakeCommand extends GeneratorCommand
 {
@@ -38,7 +38,7 @@ class NotificationMakeCommand extends GeneratorCommand
 	 */
 	public function handle()
 	{
-		if (parent::handle() === false && !$this->option('force')) {
+		if (parent::handle() === false && ! $this->option('force')) {
 			return;
 		}
 
@@ -54,9 +54,9 @@ class NotificationMakeCommand extends GeneratorCommand
 	 */
 	protected function writeMarkdownTemplate()
 	{
-		$path = resource_path('views/' . str_replace('.', '/', $this->option('markdown'))) . '.blade.php';
+		$path = resource_path('views/'.str_replace('.', '/', $this->option('markdown'))).'.blade.php';
 
-		if (!$this->files->isDirectory(dirname($path))) {
+		if (! $this->files->isDirectory(dirname($path))) {
 			$this->files->makeDirectory(dirname($path), 0755, true);
 		}
 
@@ -100,7 +100,7 @@ class NotificationMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Notifications';
+		return $rootNamespace.'\Domain\Notifications';
 	}
 
 	/**

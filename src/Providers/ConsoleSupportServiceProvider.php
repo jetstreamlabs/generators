@@ -1,10 +1,10 @@
 <?php
 
-namespace Serenity\Generators\Providers;
+namespace Jetlabs\Generators\Providers;
 
-use Illuminate\Support\AggregateServiceProvider;
 use Illuminate\Foundation\Providers\ArtisanServiceProvider;
 use Illuminate\Foundation\Providers\ComposerServiceProvider;
+use Illuminate\Support\AggregateServiceProvider;
 
 class ConsoleSupportServiceProvider extends AggregateServiceProvider
 {

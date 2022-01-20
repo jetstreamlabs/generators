@@ -2,15 +2,15 @@
 
 namespace DummyNamespace;
 
-use Serenity\Lotus\Core\Service;
-use Serenity\Lotus\Contracts\PayloadInterface;
+use Jetlabs\Lotus\Core\Service;
+use Jetlabs\Lotus\Contracts\PayloadInterface;
 
 class DummyClass extends Service
 {
 	/**
 	 * Service method for index action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function handle(): PayloadInterface
 	{
@@ -22,7 +22,7 @@ class DummyClass extends Service
 	/**
 	 * Service method for create action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function create(): PayloadInterface
 	{
@@ -32,7 +32,7 @@ class DummyClass extends Service
 	/**
 	 * Service method for edit action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function edit(): PayloadInterface
 	{
@@ -42,7 +42,7 @@ class DummyClass extends Service
 	/**
 	 * Service method for store action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function store(): PayloadInterface
 	{
@@ -52,7 +52,7 @@ class DummyClass extends Service
 	/**
 	 * Service method for update action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function update(): PayloadInterface
 	{
@@ -62,7 +62,7 @@ class DummyClass extends Service
 	/**
 	 * Service method for delete action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function delete(): PayloadInterface
 	{
@@ -72,7 +72,7 @@ class DummyClass extends Service
 	/**
 	 * Service method for restore action.
 	 *
-	 * @return \Serenity\Lotus\Contracts\PayloadInterface
+	 * @return \Jetlabs\Lotus\Contracts\PayloadInterface
 	 */
 	public function restore(): PayloadInterface
 	{

@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use Illuminate\Http\Request;
-use Serenity\Lotus\Core\Action;
+use Jetlabs\Lotus\Core\Action;
 use Illuminate\Http\RedirectResponse;
 use App\Domain\Services\DummyServiceService;
 use App\Domain\Contracts\VueResponderInterface;

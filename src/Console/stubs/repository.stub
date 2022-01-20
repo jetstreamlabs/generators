@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Serenity\Lotus\Core\Repository;
+use Jetlabs\Lotus\Core\Repository;
 use DummyRootNamespaceDomain\Entities\DummyEntity;
 use DummyRootNamespaceDomain\Repositories\Contracts\DummyClassInterface;
 

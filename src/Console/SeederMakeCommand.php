@@ -1,9 +1,9 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
-use Serenity\Generators\GeneratorCommand;
-use Serenity\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 
 class SeederMakeCommand extends GeneratorCommand
 {
@@ -58,7 +58,7 @@ class SeederMakeCommand extends GeneratorCommand
 	 */
 	protected function getPath($name)
 	{
-		return $this->serenity->databasePath() . '/seeders/' . $name . '.php';
+		return $this->Jetlabs->databasePath().'/seeders/'.$name.'.php';
 	}
 
 	/**

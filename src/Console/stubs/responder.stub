@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use App\Domain\Contracts\VueResponderInterface;
-use Serenity\Lotus\Core\VueResponder as BaseResponder;
+use Jetlabs\Lotus\Core\VueResponder as BaseResponder;
 
 class DummyClass extends BaseResponder implements VueResponderInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryMakeCommand extends GeneratorCommand
@@ -60,7 +60,7 @@ class RepositoryMakeCommand extends GeneratorCommand
 		$interface = Str::studly(class_basename($this->argument('name')));
 
 		$this->call('make:repository-contract', [
-			'name' => "{$interface}Interface"
+			'name' => "{$interface}Interface",
 		]);
 	}
 
@@ -75,7 +75,7 @@ class RepositoryMakeCommand extends GeneratorCommand
 
 		$this->call('make:eloquent-repository', [
 			'name' => "{$repository}",
-	  '--entity' => $this->option('entity') ?? null,
+			'--entity' => $this->option('entity') ?? null,
 		]);
 	}
 
@@ -87,7 +87,7 @@ class RepositoryMakeCommand extends GeneratorCommand
 	protected function getOptions()
 	{
 		return [
-	  ['entity', 'e', InputOption::VALUE_NONE, 'Set the entity name for the repository.']
+			['entity', 'e', InputOption::VALUE_NONE, 'Set the entity name for the repository.'],
 		];
 	}
 }

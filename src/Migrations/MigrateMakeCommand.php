@@ -1,10 +1,10 @@
 <?php
 
-namespace Serenity\Generators\Migrations;
+namespace Jetlabs\Generators\Migrations;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Composer;
 use Illuminate\Database\Console\Migrations\BaseCommand;
+use Illuminate\Support\Composer;
+use Illuminate\Support\Str;
 
 class MigrateMakeCommand extends BaseCommand
 {
@@ -44,7 +44,7 @@ class MigrateMakeCommand extends BaseCommand
 	/**
 	 * Create a new migration install command instance.
 	 *
-	 * @param  \Serenity\Generators\Migrations\MigrationCreator  $creator
+	 * @param  \Jetlabs\Generators\Migrations\MigrationCreator  $creator
 	 * @param  \Illuminate\Support\Composer  $composer
 	 * @return void
 	 */

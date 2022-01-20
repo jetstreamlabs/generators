@@ -1,12 +1,12 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Composer;
-use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Composer;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Finder\Finder;
 
 class AppNameCommand extends Command
 {
@@ -108,13 +108,13 @@ class AppNameCommand extends Command
 	protected function replaceNamespace($path)
 	{
 		$search = [
-			'namespace ' . $this->currentRoot . ';',
-			$this->currentRoot . '\\',
+			'namespace '.$this->currentRoot.';',
+			$this->currentRoot.'\\',
 		];
 
 		$replace = [
-			'namespace ' . $this->argument('name') . ';',
-			$this->argument('name') . '\\',
+			'namespace '.$this->argument('name').';',
+			$this->argument('name').'\\',
 		];
 
 		$this->replaceIn($path, $search, $replace);
@@ -128,11 +128,11 @@ class AppNameCommand extends Command
 	protected function setBootstrapNamespaces()
 	{
 		$search = [
-			$this->currentRoot . '\\',
+			$this->currentRoot.'\\',
 		];
 
 		$replace = [
-			$this->argument('name') . '\\',
+			$this->argument('name').'\\',
 		];
 
 		$this->replaceIn($this->getBootstrapPath(), $search, $replace);
@@ -158,11 +158,11 @@ class AppNameCommand extends Command
 	protected function setAppConfigNamespaces()
 	{
 		$search = [
-			$this->currentRoot . '\\',
+			$this->currentRoot.'\\',
 		];
 
 		$replace = [
-			$this->argument('name') . '\\',
+			$this->argument('name').'\\',
 		];
 
 		$this->replaceIn($this->getConfigPath('app'), $search, $replace);
@@ -177,8 +177,8 @@ class AppNameCommand extends Command
 	{
 		$this->replaceIn(
 			$this->getConfigPath('auth'),
-			$this->currentRoot . '\\',
-			$this->argument('name') . '\\'
+			$this->currentRoot.'\\',
+			$this->argument('name').'\\'
 		);
 	}
 
@@ -191,8 +191,8 @@ class AppNameCommand extends Command
 	{
 		$this->replaceIn(
 			$this->getConfigPath('services'),
-			$this->currentRoot . '\\',
-			$this->argument('name') . '\\'
+			$this->currentRoot.'\\',
+			$this->argument('name').'\\'
 		);
 	}
 
@@ -205,8 +205,8 @@ class AppNameCommand extends Command
 	{
 		$this->replaceIn(
 			$this->getComposerPath(),
-			str_replace('\\', '\\\\', $this->currentRoot) . '\\\\',
-			str_replace('\\', '\\\\', $this->argument('name')) . '\\\\'
+			str_replace('\\', '\\\\', $this->currentRoot).'\\\\',
+			str_replace('\\', '\\\\', $this->argument('name')).'\\\\'
 		);
 	}
 
@@ -253,7 +253,7 @@ class AppNameCommand extends Command
 	 */
 	protected function getBootstrapPath()
 	{
-		return $this->laravel->bootstrapPath() . '/app.php';
+		return $this->laravel->bootstrapPath().'/app.php';
 	}
 
 	/**
@@ -274,7 +274,7 @@ class AppNameCommand extends Command
 	 */
 	protected function getConfigPath($name)
 	{
-		return $this->laravel['path.config'] . '/' . $name . '.php';
+		return $this->laravel['path.config'].'/'.$name.'.php';
 	}
 
 	/**

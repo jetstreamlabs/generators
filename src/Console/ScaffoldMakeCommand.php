@@ -1,9 +1,9 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 class ScaffoldMakeCommand extends GeneratorCommand
@@ -35,14 +35,14 @@ class ScaffoldMakeCommand extends GeneratorCommand
 	 * @var array
 	 */
 	protected $actions = [
-	'Index',
-	'Create',
-	'Edit',
-	'Store',
-	'Update',
-	'Restore',
-	'Delete'
-  ];
+		'Index',
+		'Create',
+		'Edit',
+		'Store',
+		'Update',
+		'Restore',
+		'Delete',
+	];
 
 	/**
 	 * Array of vue responders that need to be created.
@@ -61,7 +61,7 @@ class ScaffoldMakeCommand extends GeneratorCommand
 		$this->createActions();
 		$this->createVueResponders();
 		$this->createFormRequests();
-		
+
 		$makeService = true;
 
 		if ($this->option('entity')) {
@@ -74,7 +74,7 @@ class ScaffoldMakeCommand extends GeneratorCommand
 			$this->createService();
 		}
 
-		$this->info($this->type . ' created successfully.');
+		$this->info($this->type.' created successfully.');
 		$this->info("Don't forget to bind your interfaces and write your routes.");
 	}
 
@@ -89,11 +89,11 @@ class ScaffoldMakeCommand extends GeneratorCommand
 
 		foreach ($this->actions as $action) {
 			$this->call('make:action', [
-		'name' => "{$dirname}/{$action}",
-		'--sc' => true,
-		'--type' => $this->actionType($action),
-		'--service' => "{$dirname}"
-	  ]);
+				'name' => "{$dirname}/{$action}",
+				'--sc' => true,
+				'--type' => $this->actionType($action),
+				'--service' => "{$dirname}",
+			]);
 		}
 	}
 
@@ -108,9 +108,9 @@ class ScaffoldMakeCommand extends GeneratorCommand
 
 		foreach ($this->pages as $page) {
 			$this->call('make:page', [
-		'name' => "{$dirname}/{$page}",
-		'--sc' => true
-	  ]);
+				'name' => "{$dirname}/{$page}",
+				'--sc' => true,
+			]);
 		}
 	}
 
@@ -129,15 +129,15 @@ class ScaffoldMakeCommand extends GeneratorCommand
 
 		foreach ($requests as $request) {
 			$this->call('make:request', [
-		'name' => "{$request}{$singular}"
-	  ]);
+				'name' => "{$request}{$singular}",
+			]);
 		}
 	}
 
 	/**
 	 * Create our domain service for the set.
 	 *
-	 * @param  boolean $ent
+	 * @param  bool  $ent
 	 * @return void
 	 */
 	protected function createService($ent = false): void
@@ -148,14 +148,14 @@ class ScaffoldMakeCommand extends GeneratorCommand
 
 		if ($ent) {
 			$this->call('make:service', [
-		'name' => "{$class}Service",
-		'--sc' => true,
-		'--repo' => $name
-	  ]);
+				'name' => "{$class}Service",
+				'--sc' => true,
+				'--repo' => $name,
+			]);
 		} else {
 			$this->call('make:service', [
-		'name' => "{$class}Service"
-	  ]);
+				'name' => "{$class}Service",
+			]);
 		}
 	}
 
@@ -165,9 +165,9 @@ class ScaffoldMakeCommand extends GeneratorCommand
 		$entity = Str::singular($name);
 
 		$this->call('make:entity', [
-	  'name' => $entity,
-	  '--resource' => true
-	]);
+			'name' => $entity,
+			'--resource' => true,
+		]);
 	}
 
 	protected function createRepository()
@@ -207,7 +207,7 @@ class ScaffoldMakeCommand extends GeneratorCommand
 	/**
 	 * Spec the correct action types for methods.
 	 *
-	 * @param  string $action
+	 * @param  string  $action
 	 * @return string
 	 */
 	protected function actionType($action): string
@@ -236,7 +236,7 @@ class ScaffoldMakeCommand extends GeneratorCommand
 	{
 		return [
 			['entity', 'e', InputOption::VALUE_NONE, 'Create an entity, migration and repository for the action set.'],
-			['force', null, InputOption::VALUE_NONE, 'Create the action set even if it already exists.']
+			['force', null, InputOption::VALUE_NONE, 'Create the action set even if it already exists.'],
 		];
 	}
 

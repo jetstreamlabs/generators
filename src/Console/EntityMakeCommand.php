@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class EntityMakeCommand extends GeneratorCommand
 {
@@ -39,7 +39,7 @@ class EntityMakeCommand extends GeneratorCommand
 	 */
 	public function handle()
 	{
-		if (parent::handle() === false && !$this->option('force')) {
+		if (parent::handle() === false && ! $this->option('force')) {
 			return;
 		}
 
@@ -69,7 +69,7 @@ class EntityMakeCommand extends GeneratorCommand
 
 		$this->call('make:repository', [
 			'name' => "{$repo}Repository",
-			'--entity' => $repo
+			'--entity' => $repo,
 		]);
 	}
 
@@ -83,9 +83,9 @@ class EntityMakeCommand extends GeneratorCommand
 		$factory = Str::studly(class_basename($this->argument('name')));
 
 		$this->call('make:factory', [
-	  'name' => "{$factory}Factory",
-	  '--entity' => $this->argument('name'),
-	]);
+			'name' => "{$factory}Factory",
+			'--entity' => $this->argument('name'),
+		]);
 	}
 
 	/**
@@ -98,9 +98,9 @@ class EntityMakeCommand extends GeneratorCommand
 		$table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
 		$this->call('make:migration', [
-	  'name' => "create_{$table}_table",
-	  '--create' => $table,
-	]);
+			'name' => "create_{$table}_table",
+			'--create' => $table,
+		]);
 	}
 
 	/**
@@ -125,7 +125,7 @@ class EntityMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Entities';
+		return $rootNamespace.'\Domain\Entities';
 	}
 
 	/**
@@ -136,12 +136,12 @@ class EntityMakeCommand extends GeneratorCommand
 	protected function getOptions()
 	{
 		return [
-		['repo', 's', InputOption::VALUE_NONE, 'Create a new repository for the entity.'],
-	  ['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the entity.'],
-	  ['force', null, InputOption::VALUE_NONE, 'Create the class even if the entity already exists.'],
-	  ['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the entity.'],
-	  ['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated entity should be a custom intermediate table entity.'],
-	  ['resource', 'r', InputOption::VALUE_NONE, 'Generate a repository, migration and factory for the entity.'],
-	];
+			['repo', 's', InputOption::VALUE_NONE, 'Create a new repository for the entity.'],
+			['factory', 'f', InputOption::VALUE_NONE, 'Create a new factory for the entity.'],
+			['force', null, InputOption::VALUE_NONE, 'Create the class even if the entity already exists.'],
+			['migration', 'm', InputOption::VALUE_NONE, 'Create a new migration file for the entity.'],
+			['pivot', 'p', InputOption::VALUE_NONE, 'Indicates if the generated entity should be a custom intermediate table entity.'],
+			['resource', 'r', InputOption::VALUE_NONE, 'Generate a repository, migration and factory for the entity.'],
+		];
 	}
 }

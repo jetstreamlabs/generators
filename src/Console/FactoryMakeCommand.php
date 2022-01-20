@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class FactoryMakeCommand extends GeneratorCommand
 {
@@ -58,8 +58,8 @@ class FactoryMakeCommand extends GeneratorCommand
 
 		$entity = class_basename($namespaceEntity);
 
-		if (Str::startsWith($namespaceEntity, $this->rootNamespace() . 'Domain\\Entities')) {
-			$namespace = Str::beforeLast('Database\\Factories\\' . Str::after($namespaceEntity, $this->rootNamespace() . 'Domain\\Entities\\'), '\\');
+		if (Str::startsWith($namespaceEntity, $this->rootNamespace().'Domain\\Entities')) {
+			$namespace = Str::beforeLast('Database\\Factories\\'.Str::after($namespaceEntity, $this->rootNamespace().'Domain\\Entities\\'), '\\');
 		} else {
 			$namespace = 'Database\\Factories';
 		}
@@ -93,7 +93,7 @@ class FactoryMakeCommand extends GeneratorCommand
 	{
 		$name = (string) Str::of($name)->replaceFirst($this->rootNamespace(), '')->finish('Factory');
 
-		return $this->serenity->databasePath() . '/factories/' . str_replace('\\', '/', $name) . '.php';
+		return $this->Jetlabs->databasePath().'/factories/'.str_replace('\\', '/', $name).'.php';
 	}
 
 	/**
@@ -114,7 +114,7 @@ class FactoryMakeCommand extends GeneratorCommand
 			return $entityName;
 		}
 
-		return $this->rootNamespace() . 'Domain\Entities';
+		return $this->rootNamespace().'Domain\Entities';
 	}
 
 	/**

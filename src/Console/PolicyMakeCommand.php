@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class PolicyMakeCommand extends GeneratorCommand
 {
@@ -57,12 +57,12 @@ class PolicyMakeCommand extends GeneratorCommand
 	 */
 	protected function replaceUserNamespace($stub)
 	{
-		if (!config('auth.providers.users.entity')) {
+		if (! config('auth.providers.users.entity')) {
 			return $stub;
 		}
 
 		return str_replace(
-			$this->rootNamespace() . 'User',
+			$this->rootNamespace().'User',
 			config('auth.providers.users.entity'),
 			$stub
 		);
@@ -79,7 +79,7 @@ class PolicyMakeCommand extends GeneratorCommand
 	{
 		$entity = str_replace('/', '\\', $entity);
 
-		$namespaceEntity = $this->serenity->getNamespace() . $entity;
+		$namespaceEntity = $this->Jetlabs->getNamespace().$entity;
 
 		if (Str::startsWith($entity, '\\')) {
 			$stub = str_replace('NamespacedDummyEntity', trim($entity, '\\'), $stub);
@@ -130,7 +130,7 @@ class PolicyMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Policies';
+		return $rootNamespace.'\Domain\Policies';
 	}
 
 	/**

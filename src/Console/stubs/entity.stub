@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use Serenity\Lotus\Core\Entity;
+use Jetlabs\Lotus\Core\Entity;
 use Database\Factories\DummyClassFactory;
-use Serenity\Lotus\Concerns\SelfResolves;
+use Jetlabs\Lotus\Concerns\SelfResolves;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

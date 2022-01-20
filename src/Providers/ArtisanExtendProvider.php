@@ -1,44 +1,44 @@
 <?php
 
-namespace Serenity\Generators\Providers;
+namespace Jetlabs\Generators\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Serenity\Generators\Console\AppNameCommand;
-use Serenity\Generators\Console\JobMakeCommand;
 use Illuminate\Contracts\Foundation\Application;
-use Serenity\Generators\Console\CastMakeCommand;
-use Serenity\Generators\Console\MailMakeCommand;
-use Serenity\Generators\Console\PageMakeCommand;
-use Serenity\Generators\Console\RuleMakeCommand;
-use Serenity\Generators\Console\EventMakeCommand;
-use Serenity\Generators\Console\ActionMakeCommand;
-use Serenity\Generators\Console\EntityMakeCommand;
-use Serenity\Generators\Console\PolicyMakeCommand;
-use Serenity\Generators\Console\SeederMakeCommand;
-use Serenity\Generators\Console\ChannelMakeCommand;
-use Serenity\Generators\Console\ConcernMakeCommand;
-use Serenity\Generators\Console\ConsoleMakeCommand;
-use Serenity\Generators\Console\FactoryMakeCommand;
-use Serenity\Generators\Console\PayloadMakeCommand;
-use Serenity\Generators\Console\RequestMakeCommand;
-use Serenity\Generators\Console\ServiceMakeCommand;
-use Serenity\Generators\Console\StubPublishCommand;
-use Serenity\Generators\Console\ContractMakeCommand;
-use Serenity\Generators\Console\CriteriaMakeCommand;
-use Serenity\Generators\Console\ListenerMakeCommand;
-use Serenity\Generators\Console\ObserverMakeCommand;
-use Serenity\Generators\Console\ProviderMakeCommand;
-use Serenity\Generators\Console\ResourceMakeCommand;
-use Serenity\Generators\Console\ScaffoldMakeCommand;
-use Serenity\Generators\Console\ComponentMakeCommand;
-use Serenity\Generators\Console\EventGenerateCommand;
-use Serenity\Generators\Console\ExceptionMakeCommand;
-use Serenity\Generators\Console\ResponderMakeCommand;
-use Serenity\Generators\Console\MiddlewareMakeCommand;
-use Serenity\Generators\Console\RepositoryMakeCommand;
-use Serenity\Generators\Console\NotificationMakeCommand;
-use Serenity\Generators\Console\EloquentRepositoryMakeCommand;
-use Serenity\Generators\Console\RepositoryInterfaceMakeCommand;
+use Illuminate\Support\ServiceProvider;
+use Jetlabs\Generators\Console\ActionMakeCommand;
+use Jetlabs\Generators\Console\AppNameCommand;
+use Jetlabs\Generators\Console\CastMakeCommand;
+use Jetlabs\Generators\Console\ChannelMakeCommand;
+use Jetlabs\Generators\Console\ComponentMakeCommand;
+use Jetlabs\Generators\Console\ConcernMakeCommand;
+use Jetlabs\Generators\Console\ConsoleMakeCommand;
+use Jetlabs\Generators\Console\ContractMakeCommand;
+use Jetlabs\Generators\Console\CriteriaMakeCommand;
+use Jetlabs\Generators\Console\EloquentRepositoryMakeCommand;
+use Jetlabs\Generators\Console\EntityMakeCommand;
+use Jetlabs\Generators\Console\EventGenerateCommand;
+use Jetlabs\Generators\Console\EventMakeCommand;
+use Jetlabs\Generators\Console\ExceptionMakeCommand;
+use Jetlabs\Generators\Console\FactoryMakeCommand;
+use Jetlabs\Generators\Console\JobMakeCommand;
+use Jetlabs\Generators\Console\ListenerMakeCommand;
+use Jetlabs\Generators\Console\MailMakeCommand;
+use Jetlabs\Generators\Console\MiddlewareMakeCommand;
+use Jetlabs\Generators\Console\NotificationMakeCommand;
+use Jetlabs\Generators\Console\ObserverMakeCommand;
+use Jetlabs\Generators\Console\PageMakeCommand;
+use Jetlabs\Generators\Console\PayloadMakeCommand;
+use Jetlabs\Generators\Console\PolicyMakeCommand;
+use Jetlabs\Generators\Console\ProviderMakeCommand;
+use Jetlabs\Generators\Console\RepositoryInterfaceMakeCommand;
+use Jetlabs\Generators\Console\RepositoryMakeCommand;
+use Jetlabs\Generators\Console\RequestMakeCommand;
+use Jetlabs\Generators\Console\ResourceMakeCommand;
+use Jetlabs\Generators\Console\ResponderMakeCommand;
+use Jetlabs\Generators\Console\RuleMakeCommand;
+use Jetlabs\Generators\Console\ScaffoldMakeCommand;
+use Jetlabs\Generators\Console\SeederMakeCommand;
+use Jetlabs\Generators\Console\ServiceMakeCommand;
+use Jetlabs\Generators\Console\StubPublishCommand;
 
 class ArtisanExtendProvider extends ServiceProvider
 {
@@ -55,42 +55,42 @@ class ArtisanExtendProvider extends ServiceProvider
 	 * @var array
 	 */
 	protected $devCommands = [
-	'ActionMake' => 'command.action.make',
-	'AppName' => 'command.app.name',
-	'CastMake' => 'command.cast.make',
-	'ChannelMake' => 'command.channel.make',
-	'ComponentMake' => 'command.component.make',
-	'ConcernMake' => 'command.concern.make',
-	'ConsoleMake' => 'command.console.make',
-	'ContractMake' => 'command.contract.make',
-	'CriteriaMake' => 'command.criteria.make',
-	'EloquentRepositoryMake' => 'command.eloquent.repository.make',
-	'EntityMake' => 'command.entity.make',
-	'EventGenerate' => 'command.event.generate',
-	'EventMake' => 'command.event.make',
-	'ExceptionMake' => 'command.exception.make',
-	'FactoryMake' => 'command.factory.make',
-	'JobMake' => 'command.job.make',
-	'ListenerMake' => 'command.listener.make',
-	'MailMake' => 'command.mail.make',
-	'MiddlewareMake' => 'command.middleware.make',
-	'NotificationMake' => 'command.notification.make',
-	'ObserverMake' => 'command.observer.make',
-	'PageMake' => 'command.page.make',
-	'PayloadMake' => 'command.payload.make',
-	'PolicyMake' => 'command.policy.make',
-	'ProviderMake' => 'command.provider.make',
-	'RepositoryInterfaceMake' => 'command.repository.contract.make',
-	'RepositoryMake' => 'command.repository.make',
-	'RequestMake' => 'command.request.make',
-	'ResourceMake' => 'command.resource.make',
-	'ResponderMake' => 'command.responder.make',
-	'RuleMake' => 'command.rule.make',
-	'ScaffoldMake' => 'command.scaffold.make',
-	'SeederMake' => 'command.seeder.make',
-	'ServiceMake' => 'command.service.make',
-	'StubPublish' => 'command.stub.publish',
-  ];
+		'ActionMake' => 'command.action.make',
+		'AppName' => 'command.app.name',
+		'CastMake' => 'command.cast.make',
+		'ChannelMake' => 'command.channel.make',
+		'ComponentMake' => 'command.component.make',
+		'ConcernMake' => 'command.concern.make',
+		'ConsoleMake' => 'command.console.make',
+		'ContractMake' => 'command.contract.make',
+		'CriteriaMake' => 'command.criteria.make',
+		'EloquentRepositoryMake' => 'command.eloquent.repository.make',
+		'EntityMake' => 'command.entity.make',
+		'EventGenerate' => 'command.event.generate',
+		'EventMake' => 'command.event.make',
+		'ExceptionMake' => 'command.exception.make',
+		'FactoryMake' => 'command.factory.make',
+		'JobMake' => 'command.job.make',
+		'ListenerMake' => 'command.listener.make',
+		'MailMake' => 'command.mail.make',
+		'MiddlewareMake' => 'command.middleware.make',
+		'NotificationMake' => 'command.notification.make',
+		'ObserverMake' => 'command.observer.make',
+		'PageMake' => 'command.page.make',
+		'PayloadMake' => 'command.payload.make',
+		'PolicyMake' => 'command.policy.make',
+		'ProviderMake' => 'command.provider.make',
+		'RepositoryInterfaceMake' => 'command.repository.contract.make',
+		'RepositoryMake' => 'command.repository.make',
+		'RequestMake' => 'command.request.make',
+		'ResourceMake' => 'command.resource.make',
+		'ResponderMake' => 'command.responder.make',
+		'RuleMake' => 'command.rule.make',
+		'ScaffoldMake' => 'command.scaffold.make',
+		'SeederMake' => 'command.seeder.make',
+		'ServiceMake' => 'command.service.make',
+		'StubPublish' => 'command.stub.publish',
+	];
 
 	/**
 	 * Register the service provider.

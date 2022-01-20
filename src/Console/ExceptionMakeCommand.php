@@ -1,10 +1,10 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class ExceptionMakeCommand extends GeneratorCommand
 {
@@ -57,7 +57,7 @@ class ExceptionMakeCommand extends GeneratorCommand
 	 */
 	protected function alreadyExists($rawName)
 	{
-		return class_exists($this->rootNamespace() . 'Domain\\Exceptions\\' . $rawName);
+		return class_exists($this->rootNamespace().'Domain\\Exceptions\\'.$rawName);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class ExceptionMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Exceptions';
+		return $rootNamespace.'\Domain\Exceptions';
 	}
 
 	/**

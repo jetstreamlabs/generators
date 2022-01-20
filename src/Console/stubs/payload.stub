@@ -2,8 +2,8 @@
 
 namespace DummyNamespace;
 
-use Serenity\Lotus\Base\Entity;
-use Serenity\Lotus\Core\Payload;
+use Jetlabs\Lotus\Base\Entity;
+use Jetlabs\Lotus\Core\Payload;
 
 class DummyClass extends Payload
 {
@@ -17,7 +17,7 @@ class DummyClass extends Payload
 	/**
 	 * Fill and return Entity data that's required.
 	 *
-	 * @param  \use Serenity\Lotus\Base\Entity $entity
+	 * @param  \use Jetlabs\Lotus\Base\Entity $entity
 	 * @return self
 	 */
 	public static function make(Entity $entity)

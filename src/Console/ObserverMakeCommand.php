@@ -1,11 +1,11 @@
 <?php
 
-namespace Serenity\Generators\Console;
+namespace Jetlabs\Generators\Console;
 
 use Illuminate\Support\Str;
-use Serenity\Generators\GeneratorCommand;
+use Jetlabs\Generators\Concerns\ResolvesStubPath;
+use Jetlabs\Generators\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
-use Serenity\Generators\Concerns\ResolvesStubPath;
 
 class ObserverMakeCommand extends GeneratorCommand
 {
@@ -70,7 +70,7 @@ class ObserverMakeCommand extends GeneratorCommand
 	{
 		$entity = str_replace('/', '\\', $entity);
 
-		$namespaceEntity = $this->serenity->getNamespace() . 'Domain\\Entities\\' . $entity;
+		$namespaceEntity = $this->Jetlabs->getNamespace().'Domain\\Entities\\'.$entity;
 
 		if (Str::startsWith($entity, '\\')) {
 			$stub = str_replace('NamespacedDummyEntity', trim($entity, '\\'), $stub);
@@ -101,7 +101,7 @@ class ObserverMakeCommand extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Domain\Observers';
+		return $rootNamespace.'\Domain\Observers';
 	}
 
 	/**
