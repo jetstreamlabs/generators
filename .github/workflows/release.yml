@@ -27,6 +27,5 @@ jobs:
 
       - name: run semantic-release
         env:
-          GH_TOKEN: ${{ secrets.SEM_RELEASE}}
-          GITHUB_TOKEN: ${{ secrets.VERAN }}
+          GITHUB_TOKEN: ${{ secrets.SEM_RELEASE }}
         run: npx semantic-release
